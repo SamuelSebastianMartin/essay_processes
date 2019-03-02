@@ -154,4 +154,3 @@ input("""
 file_path = filepicker()
 essay = EssayPdf(file_path)
 write_doc_file(essay.chunked_text, essay.bibliog)
-os.system('libreoffice al17digitech.docx')
