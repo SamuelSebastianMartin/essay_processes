@@ -1,9 +1,9 @@
 # essay_processes
-There are two programmes used to streamline my marking workflow. Only `pdf_to_docx_essay.py` might be of any interest, but both are optimised for my university, my students and a Linux system.
+There are two programmes used to streamline my marking workflow. Only `convert_pdf.py` might be of any interest, but both are optimised for my university, my students and a Linux system.
 
 ---
 
-## Converting PDF files to docx: `pdf_to_docx_essay.py`
+## Converting PDF files to docx: `convert_pdf.py`
 Despite my clear instructions, students still submit PDF files. This program:
 
 - lets you select the essay with a GUI file-picker
@@ -13,7 +13,7 @@ Despite my clear instructions, students still submit PDF files. This program:
 
 ### use
 
-`python3 pdf_to_docx_essay.py`
+`convert_pdf.py`
 
 ### issues
 

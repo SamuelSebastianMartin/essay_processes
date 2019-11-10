@@ -3,7 +3,7 @@
 import PyPDF2
 import docx
 import re
-import os
+
 
 class EssayPdf:
     """When passed the name (or PATH/name) of a PDF file, this class
@@ -14,11 +14,15 @@ class EssayPdf:
     def __init__(self, filename):
         self.filename = filename
         self.raw_text = self.extract_pdf_text(filename)
+        self.converted_text = self.convert()
+
+    def convert(self):
         self.body_text, self.bibliog = self.split_bib(self.raw_text)
-        self.para_marked_text = self.mark_para_breaks(self.body_text)
-        self.no_line_feed_text = self.strip_new_lines(self.para_marked_text)
-        self.finessed_text = self.finess_typography(self.no_line_feed_text)
-        self.chunked_text = self.replace_para_breaks(self.finessed_text)
+        para_marked_text = self.mark_para_breaks(self.body_text)
+        no_line_feed_text = self.strip_new_lines(para_marked_text)
+        finessed_text = self.finess_typography(no_line_feed_text)
+        converted_text = self.replace_para_breaks(finessed_text)
+        return converted_text
 
     def extract_pdf_text(self, filename):
         """Extracts the text content from the pdf document that is
@@ -39,10 +43,10 @@ class EssayPdf:
         processed with the main text, and line breaks are preserved.
         """
         searches = []
-        expr = re.compile("reference.?\W?", re.IGNORECASE)
+        expr = re.compile("reference.?\\W?", re.IGNORECASE)
         srch_refs = expr.search(raw_text)
         searches.append(srch_refs)
-        expr = re.compile("bibliograph.+?\W?", re.IGNORECASE)
+        expr = re.compile("bibliograph.+?\\W?", re.IGNORECASE)
         srch_bib = expr.search(raw_text)
         searches.append(srch_bib)
         for srch in searches:
@@ -50,9 +54,8 @@ class EssayPdf:
                 body_end = srch.span()[0] - 1
                 body_text = raw_text[0: body_end]
                 bib_start = srch.span()[0]
-                bibliog = raw_text[bib_start: ]
+                bibliog = raw_text[bib_start:]
         return body_text, bibliog
-
 
     def mark_para_breaks(self, body_text):
         """Attempts to find likely places where the \n character
@@ -79,7 +82,8 @@ class EssayPdf:
                     "Word Count:", "NEW_PARAWord Count"
                     )
 
-        text = "Title of assignment question (you should copy this from the assignment question sheet):"
+        text = "Title of assignment question  \
+                (you should copy this from the assignment question sheet):"
         if "Title of assignment" in para_marked_text:
             para_marked_text = para_marked_text.replace(
                     "Title of assignment", "NEW_PARATitle of assignment")
@@ -92,7 +96,7 @@ class EssayPdf:
                     text, "NEW_PARALecturer's name"
                     )
 
-        expr = re.compile("word count\W+?\d+?[,.]\d{3}\W?", re.IGNORECASE)
+        expr = re.compile("word count\\W+?\\d+?[,.]\\d{3}\\W?", re.IGNORECASE)
         srch = expr.search(para_marked_text)
         if srch:
             text = srch.group()
@@ -115,19 +119,20 @@ class EssayPdf:
         doublespace_strip = no_line_feed_text.split()
         single_spaced = ' '.join(doublespace_strip)
         finessed_text = single_spaced.replace("Õ", "'")  # Apostrophes
-        finessed_text = finessed_text.replace("Ò", "'") # Single quote
-        finessed_text = finessed_text.replace("Ó", "'") # Single quote
-        finessed_text = finessed_text.replace("Þ", "fi") # Apple Pages!
+        finessed_text = finessed_text.replace("Ò", "'")  # Single quote
+        finessed_text = finessed_text.replace("Ó", "'")  # Single quote
+        finessed_text = finessed_text.replace("Þ", "fi")  # Apple Pages!
         if finessed_text[0] == "!":  # Results from the 'table' format.
-            finessed_text = finessed_text[1: ]
+            finessed_text = finessed_text[1:]
         return finessed_text
 
     def replace_para_breaks(self, finessed_text):
         """Replaces all the genuine new paragraph points (found in
         `mark_para_breaks()` above) with a \n character.
         """
-        chunked_text = finessed_text.replace("NEW_PARA", "\n")
-        return chunked_text
+        converted_text = finessed_text.replace("NEW_PARA", "\n")
+        return converted_text
+
 
 def write_doc_file(essay_text, bibliog):
     paragraph_list = essay_text.split('\n')
@@ -139,6 +144,7 @@ def write_doc_file(essay_text, bibliog):
     bibliography.add_run(bibliog)
     out_doc.save(essay.filename[:-3] + "docx")
 
+
 def filepicker():
     import tkinter as tk
     from tkinter import filedialog
@@ -147,10 +153,12 @@ def filepicker():
     file_path = filedialog.askopenfilename()
     return file_path
 
+
 input("""
         Select a pdf and it will be converted to a docx file
         with the same name
         Press ENTER to begin""")
 file_path = filepicker()
 essay = EssayPdf(file_path)
-write_doc_file(essay.chunked_text, essay.bibliog)
+essay.convert()
+write_doc_file(essay.converted_text, essay.bibliog)
