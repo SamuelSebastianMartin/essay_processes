@@ -1,12 +1,12 @@
 # essay_processes
-There are two programmes used to streamline my marking workflow. Only `pdf_to_docx_essay.py` might be of any interest, but both are optimised for my university, my students and a linux system.
+There are two programmes used to streamline my marking workflow. Only `pdf_to_docx_essay.py` might be of any interest, but both are optimised for my university, my students and a Linux system.
 
 ---
 
 ## Converting PDF files to docx: `pdf_to_docx_essay.py`
-Despite my clear instructioins, students still submit PDF files. This program:
+Despite my clear instructions, students still submit PDF files. This program:
 
-- lets you select the essy with a gui file-picker
+- lets you select the essay with a GUI file-picker
 - extracts the text from the PDF
 - removes all \n line-breaks`
 - does its best to put new line-breaks in the correct places
@@ -18,7 +18,7 @@ Despite my clear instructioins, students still submit PDF files. This program:
 ### issues
 
 - the bibliography is not yet processed to remove line-breaks
-- some text encodings give strange results; new correctins should be added to `finess_typography()`
+- some text encodings give strange results; new corrections should be added to `finess_typography()`
 - non-standard title pages are not handled
 
 ---
@@ -32,4 +32,4 @@ Downloaded essays from Moolde have exceptionally long names. This program rename
 
 ### issues
 
-seems pretty rubust, provided the start-of-year `StudWork` directory is set up.
+Seems pretty robust, provided the start-of-year `StudWork` directory is set up.
