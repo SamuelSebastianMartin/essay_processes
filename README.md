@@ -33,3 +33,5 @@ Downloaded essays from Moolde have exceptionally long names. This program rename
 ### issues
 
 Seems pretty robust, provided the start-of-year `StudWork` directory is set up.
+
+***
