@@ -1,7 +1,9 @@
 #! /usr/bin/env python3
 
 from textblob import TextBlob
+import nltk
 import Essay
+
 
 #  Open the Complete Essay
 with open('essay_complete.txt', 'r') as fcomp:
@@ -25,3 +27,18 @@ with open('essay_parts/thesis.txt', 'r') as f:
 with open('essay_parts/titlepage.txt', 'r') as f:
     titlepage = f.read()
 
+fine_paras = essay_complete.splitlines()
+print(len(fine_paras))
+paras = []
+for para in fine_paras:
+    if len(para) != 0:
+        paras.append(para)
+
+
+#blob = TextBlob(essay_complete)
+#sentences = blob.sentences
+#paras = blob.split('.\n')
+print('Number of Paras = ', len(paras))
+for para in paras:
+    print()
+    print(len(para), para[:50])
