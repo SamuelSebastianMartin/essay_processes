@@ -20,7 +20,7 @@ class EssayPdf:
         self.body_text, self.bibliog = self.split_bib(self.raw_text)
         para_marked_text = self.mark_para_breaks(self.body_text)
         no_line_feed_text = self.strip_new_lines(para_marked_text)
-        finessed_text = self.finess_typography(no_line_feed_text)
+        finessed_text = self.finesse_typography(no_line_feed_text)
         converted_text = self.replace_para_breaks(finessed_text)
         return converted_text
 
@@ -111,7 +111,7 @@ class EssayPdf:
         no_line_feed_text = para_marked_text.replace("\n", " ")
         return no_line_feed_text
 
-    def finess_typography(self, no_line_feed_text):
+    def finesse_typography(self, no_line_feed_text):
         """Corrects problems with text encoding, and typical errors
         from conversion. This section can be added to when new
         idiosyncrasies are found.
