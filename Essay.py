@@ -24,7 +24,7 @@ class Essay:
     section being tested for.
     """
 
-    def self.locate_biblio():
+    def locate_biblio(self):
         """
         Searched for first, because easiest to find.
         Parameters:
@@ -37,7 +37,7 @@ class Essay:
         """
         pass
 
-    def self.locate_titlepage():
+    def locate_titlepage(self):
         """
         Parameters:
         *  Has many short paragraphs.
@@ -47,7 +47,7 @@ class Essay:
         """
         pass
 
-    def self.locate_question():
+    def locate_question(self):
         """
         Parameters:
         *  One or two sentences
@@ -59,7 +59,7 @@ class Essay:
         """
         pass
 
-    def self.locate_intro():
+    def locate_intro(self):
         """
         Parameters:
         *  Is more than 30 words long.
@@ -71,7 +71,7 @@ class Essay:
         """
         pass
 
-    def self.locate_thesis():
+    def locate_thesis(self):
         """
         Parameters:
         *  One or two sentences
@@ -81,7 +81,7 @@ class Essay:
         """
         pass
 
-    def self.locate_conc():
+    def locate_conc(self):
         """
         Parameters:
         *  Is more than 30 words long.

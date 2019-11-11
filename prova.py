@@ -1,10 +1,12 @@
 #! /usr/bin/env python3
 
 from textblob import TextBlob
+import Essay
 
 #  Open the Complete Essay
 with open('essay_complete.txt', 'r') as fcomp:
     essay_complete = fcomp.read()
+
 #  Open the Essay Parts
 with open('essay_parts/bibliog.txt', 'r') as f:
     bibliog = f.read()
