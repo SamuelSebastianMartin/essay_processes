@@ -18,7 +18,7 @@ Despite my clear instructions, students still submit PDF files. This program:
 ### issues
 
 - the bibliography is not yet processed to remove line-breaks
-- some text encodings give strange results; new corrections should be added to `finess_typography()`
+- some text encodings give strange results; new corrections should be added to `finesse_typography()`
 - non-standard title pages are not handled
 
 ---
@@ -33,3 +33,5 @@ Downloaded essays from Moolde have exceptionally long names. This program rename
 ### issues
 
 Seems pretty robust, provided the start-of-year `StudWork` directory is set up.
+
+---
