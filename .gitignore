@@ -1,4 +1,6 @@
 *.docx
 *.pdf
 example_code/*
+__pycache__/
+
 
