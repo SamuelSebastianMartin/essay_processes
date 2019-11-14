@@ -1,6 +1,10 @@
 # essay_processes
 There are two programmes used to streamline my marking workflow. Only `convert_pdf.py` might be of any interest, but both are optimised for my university, my students and a Linux system.
 
+### PLUS
+
+New class under development: `Essays.py`
+and `prova.py` to experiment with processes.
 ---
 
 ## Converting PDF files to docx: `convert_pdf.py`
